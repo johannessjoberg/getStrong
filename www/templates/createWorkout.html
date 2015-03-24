@@ -1,0 +1,8 @@
+<ion-view view-title="Create workout">
+  <ion-content>
+  <ion-item ng-repeat = "workout in workouts">
+  	{{workout.exerciseName}}
+  </ion-item>
+    <button class="button button-block button-dark" ng-click="addExercise()">Add excercise</button>
+  </ion-content>
+</ion-view>

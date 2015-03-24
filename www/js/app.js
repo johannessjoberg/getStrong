@@ -65,7 +65,24 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'PlaylistCtrl'
       }
     }
-  });
+  })
+
+  .state('app.createWorkout', {
+    url: "/createWorkout",
+    views: {
+      'menuContent':{
+        templateUrl: "templates/createWorkout.html",
+        controller: 'createWorkoutCtrl'
+      }
+    }
+  })
+
+  .state('createExercise', {
+    url: "/createExercise",
+    abstract: true,
+    templateUrl: "templates/createExercise.html",
+    controller: 'createExerciseCtrl'
+  })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
