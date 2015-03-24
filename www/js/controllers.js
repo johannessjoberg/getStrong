@@ -47,7 +47,26 @@ angular.module('starter.controllers', [])
 .controller('createWorkoutCtrl', function($scope, $ionicModal){
       $scope.workouts = [];
 
+      $scope.workouts.push(
+          $scope.form ={
+          id: 1,
+          exerciseName: 'Test',
+          modifierIncline: false,
+          modifierDecline: false,
+          modifierAmrap: false,
+          modifierWeighted: false,
+          modifierAssisted: false,
+          modifierSuperset: false,
+          sets: 3,
+          reps: 8,
+          weight: undefined
+      }
+        );
+
+      $scope.selectedExercise = undefined;
+
       $scope.addExercise = function(){
+        $scope.selectedExercise = undefined;        
         $ionicModal.fromTemplateUrl('templates/createExercise.html', {
           scope: $scope
         }).then(function(modal) {
@@ -58,10 +77,26 @@ angular.module('starter.controllers', [])
       $scope.closeExerciseModal = function(){
         $scope.modal.hide();
       }
+
+      $scope.editExercise = function(){
+       $scope.selectedExercise = 0;        
+        $ionicModal.fromTemplateUrl('templates/createExercise.html', {
+          scope: $scope
+        }).then(function(modal) {
+          $scope.modal = modal;
+          $scope.modal.show();
+        });
+ 
+      } 
 })
 
 .controller('createExerciseCtrl', function($scope){
-  $scope.form ={
+  if($scope.selectedExercise =! undefined){
+    $scope.form = $scope.workouts[$scope.selectedExercise];
+  }
+  else {
+    $scope.form = {
+    id: undefined,
     exerciseName: '',
     modifierIncline: false,
     modifierDecline: false,
@@ -72,6 +107,8 @@ angular.module('starter.controllers', [])
     sets: 5,
     reps: 5,
     weight: undefined
+  }
+  
   }
 
   $scope.submit = function() {
