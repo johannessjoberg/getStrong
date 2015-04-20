@@ -2,7 +2,7 @@
   <ion-header-bar class="bar bar-header bar-assertive">
     <h1 class="title">Add an exercise</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeExerciseModal()">Cancel</button>
+     <button class="button button-clear" ng-click="closeExerciseModal()">Cancel</button>
     </div>
   </ion-header-bar>
   <ion-content ng-controller="createExerciseCtrl">
@@ -16,36 +16,6 @@
      		</label>
      		Incline
   		</li>
-  		<li class="item item-checkbox">
-     		<label class="checkbox">
-       		<input type="checkbox" ng-model = "form.modifierDecline" ng-disabled = "form.modifierIncline">
-     		</label>
-     		Decline
-  		</li>
-  		<li class="item item-checkbox">
-     		<label class="checkbox">
-       		<input type="checkbox" ng-model = "form.modifierAmrap">
-     		</label>
-     		AMRAP
-  		</li>
-  		<li class="item item-checkbox">
-     		<label class="checkbox">
-       		<input type="checkbox" ng-model = "form.modifierWeighted">
-     		</label>
-     		Weighted
-  		</li>
-  		<li class="item item-checkbox">
-     		<label class="checkbox">
-       		<input type="checkbox" ng-model = "form.modifierAssisted">
-     		</label>
-     		Assisted
-  		</li>
-      <li class="item item-checkbox">
-        <label class="checkbox">
-          <input type="checkbox" ng-model = "form.modifierSuperset">
-        </label>
-        Superset
-      </li>
 	</ul>
 	<div class="row">
   		<div class="col">
@@ -65,7 +35,7 @@
     <div class = "col">
       Weight
   	   <label class="item item-input">
-  		    <input type="text" placeholder="8" ng-model="form.weight">
+  		    <input type="number" placeholder="8" ng-model="form.weight">
   	   </label>
      </div>
   </div>
@@ -76,3 +46,4 @@
   </div>
   </ion-content>
 </ion-modal-view>
+<script src="../js/createExerciseCtrl.js"></script>

@@ -1,2 +1,0 @@
-# getStrong
-GET STRONG
