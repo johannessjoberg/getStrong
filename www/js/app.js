@@ -43,4 +43,12 @@ angular.module('starter', ['ionic','starter.controllers'])
         }
       }
     })
+    .state('app.presentWorkout', {
+      url : "/presentWorkout",
+      views: {
+        'menuContent':{
+          templateUrl: "templates/presentWorkout.html",
+        }
+      }
+    })
   })
