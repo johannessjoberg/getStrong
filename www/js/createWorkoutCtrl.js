@@ -2,29 +2,13 @@ angular.module('starter.controllers')
 
 .controller('createWorkoutCtrl', createWorkoutCtrl);
 
-createWorkoutCtrl.$inject = ['$scope', '$ionicModal'];
+createWorkoutCtrl.$inject = ['$scope', '$ionicModal', '$timeout', 'savedWorkouts'];
 
 
-function createWorkoutCtrl($scope, $ionicModal){
-  $scope.workout = {};
-  $scope.workout.exercises = [];
-  $scope.workout.name;
- 
-  $scope.workout.exercises.push(
-    $scope.form = {   
-      id: 10,
-      exerciseName: 'Chin-ups',
-      modifierIncline: false,
-      modifierDecline: false,
-      modifierAmrap: false,
-      modifierWeighted: false,
-      modifierAssisted: false,
-      modifierSuperset: false,
-      sets: 3,
-      reps: 8,
-      weight: undefined
-    }
-  );
+function createWorkoutCtrl($scope, $ionicModal, $timeout, savedWorkouts){
+  $scope.workout = newWorkout();
+  $scope.showConfirmation = false;
+  $scope.showConfirmationDuration = 2500;
 
   $scope.selectedExercise = undefined;
 
@@ -37,6 +21,29 @@ function createWorkoutCtrl($scope, $ionicModal){
         $scope.modal = modal;
         $scope.modal.show();
       });
+  }
+
+  function newWorkout(){
+    var workout = {};
+    workout.exercises = [];
+    workout.name;
+   
+    workout.exercises.push(
+      form = {   
+        id: 10,
+        exerciseName: 'Chin-ups',
+        modifierIncline: false,
+        modifierDecline: false,
+        modifierAmrap: false,
+        modifierWeighted: false,
+        modifierAssisted: false,
+        modifierSuperset: false,
+        sets: 3,
+        reps: 8,
+        weight: undefined
+      }
+    );
+    return workout;
   }
 
   $scope.closeExerciseModal = function(){
@@ -60,8 +67,32 @@ function createWorkoutCtrl($scope, $ionicModal){
   }
 
   $scope.saveWorkout = function(){
-    console.log($scope.workout.name);
-    console.log(JSON.stringify($scope.workout));
-    console.log('saved workout!');
+    if($scope.workout.name == null){
+      showSaveError();  
+    }
+    else{
+      savedWorkouts.addWorkout($scope.workout);
+      showSaveSuccess();
+      $scope.workout = newWorkout();  
+    }
   } 
+
+  function showSaveError(){
+    displayMessageCard('Workout must have a name!');
+  }
+
+  function showSaveSuccess(){
+    displayMessageCard('Workout ' + $scope.workout.name + ' saved!');
+    
+  }
+
+  function displayMessageCard(message){
+    $scope.confirmationMessage = message;
+    $scope.showConfirmation = true;
+    $timeout(hideConfirmation, $scope.showConfirmationDuration);
+  }
+
+  function hideConfirmation(){
+    $scope.showConfirmation = false;
+  }
 }

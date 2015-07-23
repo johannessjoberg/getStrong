@@ -2,15 +2,15 @@ angular.module('starter.controllers')
 
 .controller('chooseWorkoutCtrl', chooseWorkoutCtrl);
 
-chooseWorkoutCtrl.$inject = ['$scope', '$ionicModal', '$state'];
+chooseWorkoutCtrl.$inject = ['$scope', '$ionicModal', '$state', 'chosenWorkoutService', 'savedWorkouts'];
 
-function chooseWorkoutCtrl($scope, $ionicModal, $state){
-	$scope.workouts = JSON.parse(workout);
-	console.log($scope.workouts)
+function chooseWorkoutCtrl($scope, $ionicModal, $state, chosenWorkoutService, savedWorkouts){
+	$scope.workouts = savedWorkouts.getWorkouts();
 
-$scope.openWorkout = function(){
-	$state.go("app.presentWorkout");
-}
+	$scope.openWorkout = function(index){
+		chosenWorkoutService.workout = $scope.workouts[index];
+		$state.go('app.presentWorkout');
+	}
 
 }
 

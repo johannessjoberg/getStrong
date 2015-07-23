@@ -44,10 +44,18 @@ angular.module('starter', ['ionic','starter.controllers'])
       }
     })
     .state('app.presentWorkout', {
-      url : "/presentWorkout",
+      url : "/presentWorkout/",
       views: {
         'menuContent':{
           templateUrl: "templates/presentWorkout.html",
+        }
+      }
+    })
+    .state('app.trackWorkout', {
+      url : "/trackWorkout/",
+      views: {
+        'menuContent':{
+          templateUrl: "templates/trackWorkout.html",
         }
       }
     })

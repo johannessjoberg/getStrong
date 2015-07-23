@@ -7,11 +7,14 @@
   </ion-nav-buttons>
   
 	<ion-content class="has-header">
-		<label class="item item-input">
-			
-			<input type="text" placeholder="Ultimate armblaster, Leg day etc." ng-model="workout.name" required>
- 		</label>
- 		<h3>Exercises</h3>
+
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Workout name</span>
+    <input type="text" placeholder="Ultimate armblaster, Leg day etc." ng-model="workout.name">
+  </label>
+    <div class="item item-divider">
+        Exercises
+    </div>
  		<ion-list>
 	  		<ion-item item-button-right ng-repeat = "exercise in workout.exercises" 
 	  			ng-click = "editExercise({{exercise}}, $index)">
@@ -24,8 +27,13 @@
   		</ion-list>
   		<div class="row">
   			<div class = "col">
-				<button class="button button-block button-positive" ng-click="saveWorkout()">Done</button>
+				<button class="button button-block button-positive" ng-click="saveWorkout()">Save workout</button>
   			</div>
   		</div>
+  		<div class="card ng-hide" ng-show="showConfirmation">
+        <div class="item item-text-wrap">
+          {{confirmationMessage}}
+        </div>
+</div>
   </ion-content>
 </ion-view>

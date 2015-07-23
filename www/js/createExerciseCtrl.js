@@ -49,7 +49,7 @@ function createExerciseCtrl($scope){
 
   function saveNewExercise() {
     console.log('Saved new exercise!');
-    $scope.workout.exercises.push($scope.form);  
+    $scope.workout.exercises.push($scope.form);
   }
 
   function replaceExercise(){
