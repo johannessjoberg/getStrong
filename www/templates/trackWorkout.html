@@ -1,13 +1,23 @@
-<ion-view view-title="Track workout" <!--ng-controller="presentWorkoutCtrl"-->>
+<ion-view view-title="{{trackedWorkout.name}}" ng-controller="trackWorkoutCtrl">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
 	<ion-content class="has-header">
- 		<ion-list>
+ 		<ion-list ng-repeat="exercise in trackedWorkout.exercises">
  			<div class="item item-divider">
-    			Exercises
+    			{{exercise.exerciseName}} - {{exercise.sets}} sets
   			</div>
-	  		<!--<ion-item item-button-right ng-repeat="exercise in exercises">
-        {{exercise.exerciseName}} - {{exercise.sets}} sets x {{exercise.reps}} reps
-	  		</ion-item>
-  		</ion-list>-->
-      <button class="button">Track this workouasdasdt</button>
+		    <li class="item item-checkbox checkbox-assertive" data-ng-repeat="i in getNumber(exercise.sets) track by $index">
+     			<label class="checkbox">
+       				<input type="checkbox">
+     			</label>
+     			{{exercise.reps}} reps <span ng-hide="hideUnit(exercise)">- {{exercise.weight}} kg</span>
+			</li>
+  		</ion-list>
+  		<div class = "row">
+	  		<button class="button button-block button-positive">
+	  			Finish workout
+			</button>
+		</div>
   </ion-content>
 </ion-view>

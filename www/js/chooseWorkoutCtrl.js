@@ -8,7 +8,7 @@ function chooseWorkoutCtrl($scope, $ionicModal, $state, chosenWorkoutService, sa
 	$scope.workouts = savedWorkouts.getWorkouts();
 
 	$scope.openWorkout = function(index){
-		chosenWorkoutService.workout = $scope.workouts[index];
+		chosenWorkoutService.setChosenWorkout($scope.workouts[index]);
 		$state.go('app.presentWorkout');
 	}
 
